@@ -1,5 +1,4 @@
-# Project Tree Templater
-### <code>Bring templates to your project!</code>
+# Project Tree Templater - Bring templates to your project!
 
 ## Introduction
 
