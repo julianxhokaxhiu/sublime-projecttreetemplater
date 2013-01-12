@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# Copyright (c) 2013 Julian Xhokaxhiu.
+# License: GPL (http://www.gnu.org/licenses/gpl.html)
+
 import os
 import shutil
 import sublime
