@@ -1,6 +1,6 @@
 [
 	{
-		"caption":"Run Project Tree Templater",
+		"caption":"ProjectTreeTemplater: Run",
 		"command":"project_tree_templater"
 	}
 ]
