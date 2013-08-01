@@ -64,9 +64,9 @@ def copy_template(spath):
         if 'http://' in templatepath or 'https://' in templatepath:
             try:
                 urllib.urlretrieve(templatepath,fullpath)
+                bret = True
             except Exception:
-                raise_error("The template for file '" + spath + "' does not exists or you do not have the rights to write in the specified path. Will continue with an empty file or generic template (if defined).")
-                new_template_file(fullpath)
+                raise_error("The path of the template for the extension '" + ext + "' does not exists or isn't accessible. Will continue with an empty file.")
         else:
             try:
                 shutil.copyfile(templatepath,fullpath)
