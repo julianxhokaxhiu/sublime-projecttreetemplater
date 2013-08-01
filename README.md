@@ -48,6 +48,10 @@ Yes, that's it. Pretty simple and clean! Didn't you remember something? Yeah, Un
 
         css/style.css:path/to/tpl.css
 
+* *NEW!* You can now use URLs (http or https) to download resources (even in templates or in single files). Just put your URL after the <code>:</code> charater. An example of use would be:
+
+        js/jquery-2.0.3.min.js:http://code.jquery.com/jquery-2.0.3.min.js
+
 ### And remember!
 
 If you place a <code>/</code> character at the beginning of any path (template or not), the path will be *always* considered RELATIVE to the project file.

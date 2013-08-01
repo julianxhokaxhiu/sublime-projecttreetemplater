@@ -4,6 +4,7 @@
 
 import os
 import shutil
+import urllib
 import sublime
 import sublime_plugin
 
@@ -41,13 +42,13 @@ def add_template_to_list(spath):
         spath = spath.lstrip('?')
 
     global templateslist
-    tpl = spath.split(':')
+    sx,sep,dx = spath.partition(':')
     # Remove the . before the name of the extension (if it is present)
-    tpl[0] = tpl[0].lstrip('.')
+    sx = sx.lstrip('.')
     # Remove the root if inserted
-    tpl[1] = tpl[1].lstrip('/')
+    dx = dx.lstrip('/')
     # Add the extension  to the template list
-    templateslist[tpl[0]] = currentdir + '/' + tpl[1]
+    templateslist[sx] = currentdir + '/' + dx
 
 def copy_template(spath):
     bret = False
@@ -58,11 +59,20 @@ def copy_template(spath):
 
     # if any template was defined before, let's copy it with the path the user chose
     if ext in templateslist:
-        try:
-            shutil.copyfile(templateslist[ext],spath + '.' + ext)
-            bret = True
-        except Exception:
-            raise_error("The path of the template for the extension '" + ext + "' does not exists or isn't accessible. Will continue with an empty file.")
+        templatepath = templateslist[ext]
+        fullpath = spath + '.' + ext
+        if 'http://' in templatepath or 'https://' in templatepath:
+            try:
+                urllib.urlretrieve(templatepath,fullpath)
+            except Exception:
+                raise_error("The template for file '" + spath + "' does not exists or you do not have the rights to write in the specified path. Will continue with an empty file or generic template (if defined).")
+                new_template_file(fullpath)
+        else:
+            try:
+                shutil.copyfile(templatepath,fullpath)
+                bret = True
+            except Exception:
+                raise_error("The path of the template for the extension '" + ext + "' does not exists or isn't accessible. Will continue with an empty file.")
 
     return bret
 
@@ -73,7 +83,7 @@ def add_path(spath):
 
     templatepath = None
     if spath.find(':') > -1:
-        spath,templatepath = spath.split(':')
+        spath,sep,templatepath = spath.partition(':')
 
     # Get the full path to the file we have to add
     fullpath = currentdir + '/' + spath
@@ -93,11 +103,18 @@ def add_path(spath):
         if len(os.path.basename(fullpath)) > 0:
             # If this file has his own template
             if not templatepath is None:
-                try:
-                    shutil.copyfile(templatepath,fullpath)
-                except Exception:
-                    raise_error("The template for file '" + spath + "' does not exists or you do not have the rights to write in the specified path. Will continue with an empty file or generic template (if defined).")
-                    new_template_file(fullpath)
+                if 'http://' in templatepath or 'https://' in templatepath:
+                    try:
+                        urllib.urlretrieve(templatepath,fullpath)
+                    except Exception:
+                        raise_error("The template for file '" + spath + "' does not exists or you do not have the rights to write in the specified path. Will continue with an empty file or generic template (if defined).")
+                        new_template_file(fullpath)
+                else:
+                    try:
+                        shutil.copyfile(templatepath,fullpath)
+                    except Exception:
+                        raise_error("The template for file '" + spath + "' does not exists or you do not have the rights to write in the specified path. Will continue with an empty file or generic template (if defined).")
+                        new_template_file(fullpath)
             else:
                 new_template_file(fullpath)
 
