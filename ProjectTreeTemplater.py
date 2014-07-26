@@ -19,7 +19,10 @@ currentdir = None
 #     js - /path/to/template.js
 templateslist = {}
 
-# *** GENERIC FUNCTIONS ****
+# This will represent the parent folder for each path
+groupDir = ''
+
+# *** GENERIC METHODS ****
 
 def noop(fake):
     pass
@@ -28,7 +31,7 @@ def raise_error(msg):
     sublime.error_message("ProjectTreeTemplater: An error happened. Please look at the statusbar for extended details.")
     sublime.status_message(msg)
 
-# *** TEMPLATE FUNCTIONS ****
+# *** TEMPLATE METHODS ****
 
 def new_template_file(fullpath):
     # If the file has no templates
@@ -37,7 +40,7 @@ def new_template_file(fullpath):
         open(fullpath,'w').close()
 
 def add_template_to_list(spath):
-    # Remove the - first character
+    # Remove the ? first character
     if spath[0] == '?':
         spath = spath.lstrip('?')
 
@@ -76,7 +79,7 @@ def copy_template(spath):
 
     return bret
 
-# *** PARSE FUNCTIONS ****
+# *** PARSE METHODS ****
 
 # Add the path if the path doesn't exists
 def add_path(spath):
@@ -86,7 +89,7 @@ def add_path(spath):
         spath,sep,templatepath = spath.partition(':')
 
     # Get the full path to the file we have to add
-    fullpath = currentdir + '/' + spath
+    fullpath = currentdir + '/' + groupDir + spath
 
     # Remove the / first character, avoid root paths
     if spath[0] == '/':
@@ -141,6 +144,16 @@ def remove_path(spath):
             # Remove the file
             os.unlink(fullpath)
 
+# Add a global parent path and prepend it to each path contained inside this group
+def set_group(spath):
+    spath = spath.rstrip('(').strip()
+    groupDir = spath + '/'
+
+# Remove the parent path
+def unset_group(spath):
+    groupDir = ''
+
+# *** CORE METHODS ***
 
 def clean_dir(spath):
     if os.path.exists(spath):
@@ -163,6 +176,13 @@ def update_project_tree(view):
         '-':remove_path,
         '#':noop,
         '?':add_template_to_list
+    }
+
+    # This will be the last character for every line, and if matched
+    # the relative function will be called.
+    groupMetaCommands = {
+        '(':set_group,
+        ')':unset_group
     }
 
     if len(currentdir) == 0:
@@ -188,6 +208,8 @@ def update_project_tree(view):
                     try:
                         if spath[0] in ptcMetaCommands:
                             ptcMetaCommands[spath[0]](spath)
+                        else if spath[-1:] in groupMetaCommands:
+                            groupMetaCommands[spath[-1:]](spath)
                         else:
                             add_path(spath)
                     except Exception:
@@ -195,7 +217,7 @@ def update_project_tree(view):
                         raise
         sublime.status_message("All done! Project created :)")
 
-# *** SUBLIME CLASSES ****
+# *** SUBLIME HOOKS ****
 
 class ProjectTreeTemplaterCommand(sublime_plugin.TextCommand):
     def run(self, edit):
