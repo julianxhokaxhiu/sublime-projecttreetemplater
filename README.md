@@ -48,9 +48,17 @@ Yes, that's it. Pretty simple and clean! Didn't you remember something? Yeah, Un
 
         css/style.css:path/to/tpl.css
 
-* *NEW!* You can now use URLs (http or https) to download resources (even in templates or in single files). Just put your URL after the <code>:</code> charater. An example of use would be:
+* You can now use URLs (http or https) to download resources (even in templates or in single files). Just put your URL after the <code>:</code> charater. An example of use would be:
 
         js/jquery-2.0.3.min.js:http://code.jquery.com/jquery-2.0.3.min.js
+
+* *NEW!* You can use Groups! It's nothing special, it's just a parent directory that will contain any path inside of it. An example of use woud be:
+
+        foo (
+            css/
+            js/
+            index.html
+        )
 
 ### And remember!
 
