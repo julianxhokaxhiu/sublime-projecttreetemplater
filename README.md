@@ -62,7 +62,7 @@ Soon it will be available to [Sublime Package Control](http://wbond.net/sublime_
 So what you have to do is: press code>Ctrl+Shift+P</code>, type <code>install</code>, press <code>Enter</code> then type <code>ProjectTreeTemplater</code> and finally press again the <code>Enter</code> key.
 
 In the meanwhile, to install it you just have to download a copy of this folder, and copy it to the one of your already existing packages. To find it, simply open Sublime Text and then do
-    
+
     Preferences -> Browse Packages...
 
 and place it inside that folder.
@@ -70,30 +70,12 @@ and place it inside that folder.
 ### Only for Windows!
 
 If you have package control enabled you have to specify it in your list. To do that you simply have to press <code>Ctrl+Shift+P</code> and type <code>Package Control Settings - User</code>, press the <code>Enter</code> key and then, in the list put this inside:
-    
+
     "ProjectTreeTemplater"
 
 ## License
 
-Project Tree Templater - Bring templates to your project!<br/>
-Copyright (c) 2013 Julian Xhokaxhiu
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+See [LICENSE](https://github.com/julianxhokaxhiu/sublime-projecttreetemplater/blob/master/LICENSE).
 
 ## Last but not least
 
