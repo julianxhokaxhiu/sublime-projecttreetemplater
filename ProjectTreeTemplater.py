@@ -99,7 +99,7 @@ def add_path(spath):
         # Add the path (if exists)
         dirs = os.path.dirname(spath)
         if len(dirs) > 0:
-            fulldirspath = currentdir + '/' + dirs
+            fulldirspath = currentdir + '/' + groupDir + dirs
             if not os.path.exists(fulldirspath):
                 os.makedirs(fulldirspath)
 
@@ -146,11 +146,15 @@ def remove_path(spath):
 
 # Add a global parent path and prepend it to each path contained inside this group
 def set_group(spath):
+    global groupDir
+
     spath = spath.rstrip('(').strip()
     groupDir = spath + '/'
 
 # Remove the parent path
 def unset_group(spath):
+    global groupDir
+
     groupDir = ''
 
 # *** CORE METHODS ***
@@ -206,10 +210,10 @@ def update_project_tree(view):
                 spath = view.substr(line).strip()
                 if len(spath) > 0:
                     try:
-                        if spath[0] in ptcMetaCommands:
-                            ptcMetaCommands[spath[0]](spath)
-                        else if spath[-1:] in groupMetaCommands:
+                        if spath[-1:] in groupMetaCommands:
                             groupMetaCommands[spath[-1:]](spath)
+                        elif spath[0] in ptcMetaCommands:
+                            ptcMetaCommands[spath[0]](spath)
                         else:
                             add_path(spath)
                     except Exception:
@@ -217,7 +221,7 @@ def update_project_tree(view):
                         raise
         sublime.status_message("All done! Project created :)")
 
-# *** SUBLIME HOOKS ****
+# *** SUBLIME CLASSES ****
 
 class ProjectTreeTemplaterCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -225,7 +229,7 @@ class ProjectTreeTemplaterCommand(sublime_plugin.TextCommand):
 
 class ProjectTreeTemplaterEventListener(sublime_plugin.EventListener):
     # Execute the project creation after the user has saved the file
-    def on_post_save(self, view):
+    def on_post_save_async(self, view):
         # Read the global settings for the plugin
         global_settings = sublime.load_settings(__name__ + '.sublime-settings')
 
