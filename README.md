@@ -19,7 +19,7 @@ For example, the project mentioned in the <code>Introduction</code> before, coul
     js/
     index.html
 
-Yes, that's it. Pretty simple and clean! Didn't you remember something? Yeah, Unix path declaration. Nothing more, you have all the basis you would need to use this plugin. Nothing new.
+Yes, that's it. Pretty simple and clean! Does it sound familiar? Yeah, Unix path declaration. Nothing more, you have all the basis you would need to use this plugin. Nothing new.
 
 ## Reference
 
