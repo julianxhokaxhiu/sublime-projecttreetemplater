@@ -58,6 +58,14 @@ Yes, that's it. Pretty simple and clean! Does it sound familiar? Yeah, Unix path
             js/
             index.html
         )
+        
+or also
+
+        foo/bar (
+            css/
+            js/
+            index.html
+        )
 
 ### And remember!
 
