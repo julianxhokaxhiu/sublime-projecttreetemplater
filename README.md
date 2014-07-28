@@ -74,12 +74,6 @@ In the meanwhile, to install it you just have to download a copy of this folder,
 
 and place it inside that folder.
 
-### Only for Windows!
-
-If you have package control enabled you have to specify it in your list. To do that you simply have to press <code>Ctrl+Shift+P</code> and type <code>Package Control Settings - User</code>, press the <code>Enter</code> key and then, in the list put this inside:
-
-    "ProjectTreeTemplater"
-
 ## License
 
 See [LICENSE](https://github.com/julianxhokaxhiu/sublime-projecttreetemplater/blob/master/LICENSE).
