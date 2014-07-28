@@ -148,7 +148,7 @@ def remove_path(spath):
 def set_group(spath):
     global groupDir
 
-    spath = spath.rstrip('(').strip()
+    spath = spath.rstrip('(').strip().rstrip('/')
     groupDir = spath + '/'
 
 # Remove the parent path
