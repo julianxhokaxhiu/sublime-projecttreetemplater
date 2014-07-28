@@ -2,8 +2,7 @@
 
 ## Introduction
 
-This is a simple plugin for <code>Sublime Text 2/3</code> to create a template for your project. But what could a template for a project?
-Imagine that you're creating your project literally from zero. You first have to create a folder called "css" where you will put all your CSS files in. Like before, you'll do a "js" folder, where you'll put your Javascript files in. And finally you'll create also an index.html where you will put your HTML inside of it.
+This is a simple plugin for <code>Sublime Text 2/3</code> to create a template for your project. Imagine that you're creating your project literally from zero. You first have to create a folder called "css" where you will put all your CSS files in. Like before, you'll do a "js" folder, where you'll put your Javascript files in. And finally you'll create also an index.html where you will put your HTML inside of it.
 
 Of course, this could be the probably not-common case of work, but in fact, sometimes happenes, from creating templates to starting little projects.
 
