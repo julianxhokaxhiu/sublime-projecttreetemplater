@@ -133,15 +133,19 @@ def remove_path(spath):
     if spath[0] == '/':
         spath = spath.lstrip('/')
 
-    filename = path.basename(spath)
     fullpath = currentdir + '/' + spath
-    if filename == '*':
-        # Remove all files in that dir
-        clean_dir(path.dirname(fullpath))
-    if path.exists(fullpath):
-        if len(filename) > 0:
+    filename = os.path.basename(spath)
+    # Check if it's a directory
+    if os.path.isdir(fullpath):
+        filename = '*'
+        fullpath += '/'
+    if os.path.exists(fullpath):
+        if filename == '*':
+            # Remove all files in that dir
+            clean_dir(os.path.dirname(fullpath))
+        elif len(filename) > 0:
             # Remove the file
-            os.unlink(fullpath)
+            os.remove(fullpath)
 
 # Add a global parent path and prepend it to each path contained inside this group
 def set_group(spath):
