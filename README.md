@@ -34,6 +34,12 @@ Yes, that's it. Pretty simple and clean! Does it sound familiar? Yeah, Unix path
     but let we suppose we're going to remove all files inside the folder (and the folder itself), then we have to write:
 
         -css/*
+    
+    or you can also write
+        
+        -css
+        
+    since it will autodetect if it's a folder. Notice that this is just the same syntax as `-css/*`.
 
 * To place a *default* template for *every* file which will be created with that extension we will use the <code>?</code> character as the first character of your line. An example of use would be:
 
@@ -49,7 +55,7 @@ Yes, that's it. Pretty simple and clean! Does it sound familiar? Yeah, Unix path
 
 * You can now use URLs (http or https) to download resources (even in templates or in single files). Just put your URL after the <code>:</code> charater. An example of use would be:
 
-        js/jquery-2.0.3.min.js:http://code.jquery.com/jquery-2.0.3.min.js
+        js/jquery-latest.min.js:http://code.jquery.com/jquery-latest.min.js
 
 * *NEW!* You can use Groups! It's nothing special, it's just a parent directory that will contain any path inside of it. An example of use woud be:
 
