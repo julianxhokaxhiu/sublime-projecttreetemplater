@@ -24,12 +24,11 @@ groupDir = ''
 
 # *** GENERIC METHODS ****
 
-def noop(fake):
+def noop(fake=0):
     pass
 
 def raise_error(msg):
-    sublime.error_message("ProjectTreeTemplater: An error happened. Please look at the statusbar for extended details.")
-    sublime.status_message(msg)
+    sublime.error_message(msg)
 
 # *** TEMPLATE METHODS ****
 
@@ -93,7 +92,7 @@ def add_path(spath):
 
     # Remove the / first character, avoid root paths
     if spath[0] == '/':
-        spath = path.lstrip('/')
+        spath = spath.lstrip('/')
 
     if not os.path.exists(fullpath):
         # Add the path (if exists)
