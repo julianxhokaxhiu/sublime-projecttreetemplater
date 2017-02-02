@@ -10,7 +10,7 @@ Today, with this plugin you can automate all your work, with only a few line of 
 
 ## How it works
 
-The only thing you have to do is creating a <code>my_project_name_here.stprj</code> file wherever you want, remember that ANYTHING will be created in the same place where, that file, will be saved.
+The only thing you have to do is creating a <code>my_project_name_here.stprj</code> file wherever you want, remember that EVERYTHING will be created in the same place where, that file, will be saved.
 
 After that, what you have to do is declaring your project structure as likely you're used to do manually.
 For example, the project mentioned in the <code>Introduction</code> before, could be written as the following:
